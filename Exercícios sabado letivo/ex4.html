@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmácia JS</title>
+</head>
+<body>
+    <h1>Farmácia JS</h1>
+    <hr>
+    <p>Medicamento <input type="text" id="inDescricao"></p>
+    <p>Preço R$: <input type="text" id="inPreco"></p>
+    <p><input type="button" value="Mostrar Promoção" id="btnCalcular"></p>
+    <p id="outResposta"></p>
+
+    <script>
+        function calcularPrecoPromocional() {
+            // Obter as referências aos elementos da página
+            let inDescricao = document.getElementById('inDescricao');
+            let inPreco = document.getElementById('inPreco');
+            let outResposta = document.getElementById('outResposta');
+
+            // Obter os valores dos campos de entrada
+            let descricao = inDescricao.value;
+            let preco = parseFloat(inPreco.value);
+
+            // Calcular o preço promocional
+            let precoPromocional = preco - Math.floor(preco * 0.01);
+
+            // Calcular o preço promocional de duas unidades e somar
+            let precoPromocionalDuasUnidades = (precoPromocional * 2) - Math.floor(precoPromocional * 2);
+
+            // Calcular o preço final da promoção
+            let precoFinalPromocao = Math.floor((precoPromocional * 2) + precoPromocionalDuasUnidades);
+
+            // Exibir o resultado
+            outResposta.textContent = `Promoção de ${descricao} - Leve 2 por apenas R$ ${precoFinalPromocao.toFixed(2)}`;
+
+            // Limpar os campos de entrada
+            inDescricao.value = '';
+            inPreco.value = '';
+        }
+
+        // Obter a referência ao botão e atribuir o evento de clique
+        let btnCalcular = document.getElementById('btnCalcular');
+        btnCalcular.addEventListener('click', calcularPrecoPromocional);
+    </script>
+</body>
+</html>

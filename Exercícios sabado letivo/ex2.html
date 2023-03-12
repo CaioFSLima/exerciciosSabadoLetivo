@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenda de Veículos JS</title>
+</head>
+<body>
+    <h1>Revenda de Veículos JS</h1>
+    <hr>
+    <p>Veículo: <input type="text" id="inModelo"></p>
+    <p>Preço R$: <input type="text" id="inPreco"></p>
+    <p><input type="button" value="Ver Promoção" id="btnCalcular"></p>
+    <p id="outEntrada"></p>
+    <p id="outParcelas"></p>
+    <script>
+        function calcularFinanciamento() {
+            // Obter as referências aos elementos da página
+            let inModelo = document.getElementById('inModelo');
+            let inPreco = document.getElementById('inPreco');
+            let outEntrada = document.getElementById('outEntrada');
+            let outParcelas = document.getElementById('outParcelas');
+
+            // Obter os valores dos campos de entrada
+            let modelo = inModelo.value;
+            let preco = parseFloat(inPreco.value);
+
+            // Calcular a entrada e as parcelas
+            let entrada = preco * 0.5;
+            let parcelas = (preco * 0.5) / 12;
+
+            // Exibir os resultados
+            outEntrada.textContent = `Entrada de R$: ${entrada.toFixed(1)}`;
+            outParcelas.textContent = `12x R$${parcelas.toFixed(1)}`;
+
+            // Limpar os campos de entrada
+            inModelo.value = '';
+            inPreco.value = '';
+        }
+
+        // Obter a referência ao botão e atribuir o evento de clique
+        let btnCalcular = document.getElementById('btnCalcular');
+        btnCalcular.addEventListener('click', calcularFinanciamento);
+    </script>
+</body>
+</html>
